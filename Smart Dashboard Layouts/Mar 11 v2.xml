@@ -1,0 +1,102 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Auto choices" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="425" y="101"/>
+	</widget>
+	<widget field="left PID target" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="41" y="44"/>
+	</widget>
+	<widget field="right output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="225" y="164"/>
+	</widget>
+	<widget field="right PID target" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="210" y="43"/>
+	</widget>
+	<widget field="current LF" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="412" y="19"/>
+	</widget>
+	<widget field="current LB" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="412" y="38"/>
+	</widget>
+	<widget field="right position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="223" y="24"/>
+	</widget>
+	<widget field="left position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="54" y="25"/>
+	</widget>
+	<widget field="left output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="71" y="167"/>
+	</widget>
+	<widget field="current RF" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="556" y="18"/>
+	</widget>
+	<widget field="current RB" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="556" y="37"/>
+	</widget>
+	<widget field="left input" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="79" y="148"/>
+	</widget>
+	<widget field="right input" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="233" y="145"/>
+	</widget>
+	<widget field="left speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="74" y="113"/>
+	</widget>
+	<widget field="right speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="229" y="112"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="712" y="3"/>
+		<width>643</width>
+		<height>482</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+</dashboard>
+<live-window>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Compressor[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Compressor[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DoubleSolenoid[0,0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DoubleSolenoid[0,0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DoubleSolenoid[0,2]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DoubleSolenoid[0,2]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Encoder[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Encoder[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="20" y="2"/>
+		<width>213</width>
+		<height>182</height>
+	</widget>
+</live-window>
+</xml>
