@@ -1,0 +1,77 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="left PID target" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="376" y="27"/>
+	</widget>
+	<widget field="right output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="191" y="44"/>
+	</widget>
+	<widget field="right PID target" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="536" y="27"/>
+	</widget>
+	<widget field="current LF" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="50" y="118"/>
+	</widget>
+	<widget field="current LB" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="50" y="99"/>
+	</widget>
+	<widget field="right position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="549" y="9"/>
+	</widget>
+	<widget field="left position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="389" y="10"/>
+	</widget>
+	<widget field="left output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="48" y="45"/>
+	</widget>
+	<widget field="current RF" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="197" y="99"/>
+	</widget>
+	<widget field="current RB" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="197" y="118"/>
+	</widget>
+	<widget field="left input" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="56" y="26"/>
+	</widget>
+	<widget field="right input" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="199" y="26"/>
+	</widget>
+	<widget field="left speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="51" y="9"/>
+	</widget>
+	<widget field="right speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="194" y="8"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="720" y="-2"/>
+		<width>640</width>
+		<height>481</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field="Auto choices" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="430" y="67"/>
+	</widget>
+</dashboard>
+<live-window>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Compressor[0]" type="Compressor" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="28" y="16"/>
+			<height>23</height>
+			<width>135</width>
+		</widget>
+		<widget field="DoubleSolenoid[0,0]" type="Double Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="6" y="39"/>
+			<height>20</height>
+			<width>179</width>
+		</widget>
+		<widget field="DoubleSolenoid[0,2]" type="Double Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.RelayController">
+			<location x="6" y="59"/>
+			<height>20</height>
+			<width>179</width>
+		</widget>
+		<location x="0" y="0"/>
+		<width>191</width>
+		<height>85</height>
+	</widget>
+</live-window>
+</xml>

@@ -28,10 +28,6 @@ public class Drive extends RobotSubsystems
     leftBack.setInverted(false);
     rightFront.setInverted(true);
     rightBack.setInverted(true);
-
-    /* This is part of a test and feel free to comment it out
-    createExponentialDriveTable();
-    */
   }
   public void robotPeriodic() {}
 
@@ -40,9 +36,6 @@ public class Drive extends RobotSubsystems
   }
 
   public void teleopPeriodic() {
-    /*
-    nonlinearDrive(deadband(Robot.controllerOne.getLeftY()), deadband(Robot.controllerO0ne.getRightY()) );s
-    */
     nonlinearDrive(Robot.controllerOne.getLeftY(), Robot.controllerOne.getRightY() );
   }
   public void venomEncoderReset() {
@@ -111,20 +104,6 @@ public class Drive extends RobotSubsystems
   public void exponentialDrive(double left, double right) {
     leftFront.set(-(0.2*Math.tan(1.4*left)));
     rightFront.set(-(0.2*Math.tan(1.4*right)));
-  }
-  */
-
-  /* Experiment with creating lookup tables to reduce computational burden of drive function
-  public void createExponentialDriveTable() {
-    double[] posArray = new double[1999];
-    double[] negArray = new double[1999];
-    for(int i = 0; i < 1999; i++) {
-      posArray[i] = 0.2*Math.tan(1.4*(i/2000));
-    }
-    for(int i = 0; i < 1999; i++) {
-      negArray[i] = 0.2*Math.tan(1.4*-(i/2000));
-    }
-    System.out.println(posArray + " && " + negArray);
   }
   */
 }
