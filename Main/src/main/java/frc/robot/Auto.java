@@ -4,6 +4,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.playingwithfusion.CANVenom.ControlMode;
+
+import com.ctre.phoenix.motorcontrol.*;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import com.ctre.phoenix.motorcontrol.ControlMode;
 
 
@@ -13,13 +20,13 @@ public class Auto extends RobotSubsystems{
 
   public void robotInit() {
     m_chooser.setDefaultOption("Default Comp. Auto", Default);
-    m_chooser.addOption("Test! 2 Ball Auto", kCustomAuto);
+    m_chooser.addOption("2 Ball expirement", kCustomAuto);
     m_chooser.addOption("Auto 40 pos", kCustomAuto1);
     SmartDashboard.putData("Auto choices", m_chooser);
     }
 
     public static final String Default = "Default Comp. Auto";
-    public static final String kCustomAuto = "Test! 2 Ball Auto";
+    public static final String kCustomAuto = "2 Ball expirement";
     public static final String kCustomAuto1 = "Auto 40";
     public String m_autoSelected;
     private final SendableChooser<String> m_chooser = new SendableChooser<>();
@@ -60,16 +67,31 @@ public class Auto extends RobotSubsystems{
           Shooter.shooterRPM = 700;
           double targetVelocity_UnitsPer100ms = Shooter.shooterRPM * 4096.0 / 600.0;
           Hopper.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.6);
+          Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.4);
           Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.Velocity, targetVelocity_UnitsPer100ms);
-          if (time.get() > 2) {
+          if (time.get() > 3) {
             Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
             Hopper.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
+            Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
+
+            
+
             Drive.rightFront.setCommand(ControlMode.PositionControl, -85.0);
             Drive.leftFront.setCommand(ControlMode.PositionControl, -85.0);
-          } else if (time.get() > 4.5)  {
-            Drive.encoderReset();
+          } else if (time.get() > 6)  {
             Drive.rightFront.setCommand(ControlMode.PositionControl, -21.015);
             Drive.leftFront.setCommand(ControlMode.PositionControl, 21.015);
+          } else if (time.get() > 8)  {
+            Intake.rightSolenoid.set(Value.kForward);
+            Intake.leftSolenoid.set(Value.kForward);
+            Intake.intakeMotor.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.8);
+          } else if (time.get() > 9.5) {
+            Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.4);
+            Intake.rightSolenoid.set(Value.kReverse);
+            Intake.leftSolenoid.set(Value.kReverse);
+          } else if (time.get() > 12) {
+            Drive.rightFront.setCommand(ControlMode.PositionControl, -42.03);
+            Drive.leftFront.setCommand(ControlMode.PositionControl, 42.03);
           }
             break;
           case kCustomAuto1:
@@ -79,13 +101,19 @@ public class Auto extends RobotSubsystems{
             break;
           case Default:
           default:
+            //Drive.rightFront.setCommand(ControlMode.PositionControl, -60);
+            //Drive.leftFront.setCommand(ControlMode.PositionControl, -60);
+            //
+            //if (time.get() > 2)
             Shooter.shooterRPM = 700;
-            double targetVelocity_UnitsPer100ms = Shooter.shooterRPM * 4096.0 / 600.0;
+            double defaultTargetVelocity_UnitsPer100ms = Shooter.shooterRPM * 4096.0 / 600.0;
             Hopper.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.6);
-            Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+            Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.4);
+            Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.Velocity, defaultTargetVelocity_UnitsPer100ms);
             if (time.get() > 3) {
               Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
               Hopper.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
+              Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
               Drive.rightFront.setCommand(ControlMode.PositionControl, -85.0);
               Drive.leftFront.setCommand(ControlMode.PositionControl, -85.0);
             }

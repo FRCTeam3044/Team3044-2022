@@ -15,8 +15,8 @@ public class Intake extends RobotSubsystems {
    
     Compressor IntakeCompressor = new Compressor(PneumaticsModuleType.CTREPCM);
 
-    DoubleSolenoid rightSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
-    DoubleSolenoid leftSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+    public static DoubleSolenoid rightSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+    public static DoubleSolenoid leftSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
 
     public void robotInit() {
         /** Set talons and solenoids following eachother here */
@@ -47,15 +47,6 @@ public class Intake extends RobotSubsystems {
         if (Robot.controllerTwo.getLeftBumper()) {
             rightSolenoid.set(Value.kForward);
             leftSolenoid.set(Value.kForward);
-            /*
-            try{
-                Thread.sleep(500);
-            }
-            catch(InterruptedException ex)
-            {
-                Thread.currentThread().interrupt();
-            }
-            */
             intakeMotor.set(ControlMode.PercentOutput, 0.8);
         } else{
             rightSolenoid.set(Value.kReverse);
