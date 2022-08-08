@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import edu.wpi.first.wpilibj.Timer;
 
 /** John do this one */
 public class Shooter extends RobotSubsystems {
@@ -12,6 +13,9 @@ public class Shooter extends RobotSubsystems {
     public static TalonSRX kicker = new TalonSRX(9);
     double shooterMagicVelocityPercentValue = 0.30;
     public static double shooterRPM = 700;
+
+    static Timer shooterTimer = new Timer();
+    static int shooterState;
 
     public void robotInit() {
         /** Set talons following eachother here */
@@ -52,6 +56,11 @@ public class Shooter extends RobotSubsystems {
         shooter.configMotionAcceleration( magicMaxAccel, talonTimeOut);
         shooter.configAllowableClosedloopError(talonPIDslot, maxPIDerrAllowance);
         shooter.configNeutralDeadband(shooterDeadband);
+
+        kicker.configFactoryDefault();
+        kicker.setInverted(true);
+        kicker.setNeutralMode(NeutralMode.Coast);
+
         shooterRPM = 700;
     }
 
@@ -72,9 +81,20 @@ public class Shooter extends RobotSubsystems {
         }
         if(Robot.controllerTwo.getLeftTriggerAxis() > 0.9){
             double targetVelocity_UnitsPer100ms = shooterRPM * 4096.0 / 600.0;
+            if(shooterState == 0){
+                shooterTimer.reset();
+                shooterTimer.start();
+                shooterState = 1;
+            }
+            kicker.set(ControlMode.PercentOutput, 0);
             shooter.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+            if (shooterTimer.get() > 5 || shooter.getSelectedSensorVelocity() > 0.95 * targetVelocity_UnitsPer100ms) {
+                kicker.set(ControlMode.PercentOutput, 0.6);   
+            }
         } else {
             shooter.set(ControlMode.PercentOutput, 0.0);
+            kicker.set(ControlMode.PercentOutput, 0.0);
+            shooterState = 0;
         }
     }
 
@@ -88,5 +108,24 @@ public class Shooter extends RobotSubsystems {
         shooter.set(ControlMode.PercentOutput, 0.0);
     }
 
-    public void testPeriodic() {}
+    public void testPeriodic() {
+        //Left Joystick Button = High goal
+        if(Robot.controllerOne.getLeftStickButton()){
+            shooterRPM = 1200;
+        }
+
+        //Right Joystick Button = Low goal
+        if(Robot.controllerOne.getRightStickButton()){
+            shooterRPM = 700;
+        }
+
+        //Left Trigger = Shooter moves
+        if(Robot.controllerOne.getLeftTriggerAxis() > 0.9){
+            double targetVelocity_UnitsPer100ms = shooterRPM * 4096.0 / 600.0;
+            shooter.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+        } else {
+            shooter.set(ControlMode.PercentOutput, 0.0);
+        }
+
+    }
 }

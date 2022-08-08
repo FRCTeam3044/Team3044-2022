@@ -24,7 +24,7 @@ public class Climb extends RobotSubsystems {
         int magicMaxAccel = 0;
         double climberMotorVelocityValue = 500;
         int climberMagicScurveValue = 0;
-        Boolean climberMotorDirectionInvert = true;
+        //Boolean climberMotorDirectionInvert = true;
         Boolean climberEncoderPhaseInvert = true;
         Boolean climberEnableVoltCompValue = true;
         double climberRescaleFullVoltsValue = 11.0;
@@ -155,16 +155,24 @@ public class Climb extends RobotSubsystems {
     public void testInit() {}
 
     public void testPeriodic() {
-        if(Robot.controllerTwo.getPOV() >= 0 && Robot.controllerTwo.getPOV() <= 0){
+        //Up D-pad = right climber up
+        if(Robot.controllerOne.getPOV() == 0){
             rightClimber.set(ControlMode.PercentOutput, 0.3);
-        } else {
+        } else if(Robot.controllerOne.getPOV() == 180){
+            rightClimber.set(ControlMode.PercentOutput, -0.3);
+        } else{    
             rightClimber.set(ControlMode.PercentOutput, 0);
         }
 
-        if(Robot.controllerTwo.getPOV() >= 170 && Robot.controllerTwo.getPOV() <= 190){
-            rightClimber.set(ControlMode.PercentOutput, -0.3);
+        //Down D-pad = right climber down
+
+        //Right D-pad = left climber up
+        if(Robot.controllerOne.getPOV() == 90 ){
+            leftClimber.set(ControlMode.PercentOutput, 0.3);
+        } else if(Robot.controllerOne.getPOV() == 270){
+            leftClimber.set(ControlMode.PercentOutput, -0.3);
         } else {
-            rightClimber.set(ControlMode.PercentOutput, 0);
+            leftClimber.set(ControlMode.PercentOutput, 0);
         }
     }
 }

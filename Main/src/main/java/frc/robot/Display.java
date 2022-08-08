@@ -45,6 +45,8 @@ public class Display extends RobotSubsystems{
             if((Drive.rightFront.getTemperature()+Drive.rightBack.getTemperature())/2 > 75)   {
                 SmartDashboard.putBoolean("RIGHT TEMP. WARNING", true);
             } else {SmartDashboard.putBoolean("RIGHT TEMP. WARNING", false);}
+
+            SmartDashboard.putNumber("shooter RPM", Shooter.shooter.getSelectedSensorVelocity());
         }
         loopCount++;
     }

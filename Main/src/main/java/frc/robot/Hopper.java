@@ -11,22 +11,22 @@ public class Hopper extends RobotSubsystems {
 
     public static TalonSRX backRoller = new TalonSRX(8);
     public static TalonSRX frontRoller = new TalonSRX(7);
-    public static TalonSRX kicker = new TalonSRX(9);
+    //public static TalonSRX kicker = new TalonSRX(9);
     //private final WPI_TalonSRX topRoller = new WPITalonSRX(InputIDHere);
     
     public void robotInit() {
         /** Set talons following eachother here */
         backRoller.configFactoryDefault();
         frontRoller.configFactoryDefault();
-        kicker.configFactoryDefault();
+        //kicker.configFactoryDefault();
        
         backRoller.follow(frontRoller);
-        kicker.setInverted(true);
+        //kicker.setInverted(true);
         backRoller.setInverted(false);
         frontRoller.setInverted(false);
         backRoller.setNeutralMode(NeutralMode.Coast);
         frontRoller.setNeutralMode(NeutralMode.Coast);
-        kicker.setNeutralMode(NeutralMode.Coast);
+        //kicker.setNeutralMode(NeutralMode.Coast);
     }
 
     public void robotPeriodic() {}
@@ -36,16 +36,16 @@ public class Hopper extends RobotSubsystems {
     public void teleopPeriodic() {
         /** When calling on controllers use Robot.controllerOne.etc or Robot.controllerTwo.etc */
         if(Robot.controllerTwo.getYButton()){
-            kicker.set(ControlMode.PercentOutput, -0.6);
+            Shooter.kicker.set(ControlMode.PercentOutput, -0.6);
             frontRoller.set(ControlMode.PercentOutput, 0.4);
         } else {
             frontRoller.set(ControlMode.PercentOutput, 0.0);
-            kicker.set(ControlMode.PercentOutput, 0.0);
+            Shooter.kicker.set(ControlMode.PercentOutput, 0.0);
         }
 
-        if(Robot.controllerTwo.getBackButton()){
+        /*if(Robot.controllerTwo.getBackButton()){
             kicker.set(ControlMode.PercentOutput, 0.6);
-        }
+        }*/
 
     }
 
@@ -56,23 +56,18 @@ public class Hopper extends RobotSubsystems {
     public void testInit() {}
 
     public void testPeriodic() {
-        /** When calling on controllers use Robot.controllerOne.etc or Robot.controllerTwo.etc */
-        if(Robot.controllerTwo.getYButton()){
+        //Y Button = Front roller and Back roller
+        if(Robot.controllerOne.getYButton()){
             frontRoller.set(ControlMode.PercentOutput, 0.4);
-            kicker.set(ControlMode.PercentOutput, -0.2);
         } else {
-            frontRoller.set(ControlMode.PercentOutput, 0.0);
-            kicker.set(ControlMode.PercentOutput, 0.0);
+            frontRoller.set(ControlMode.PercentOutput, 0);
         }
-        if(Robot.controllerTwo.getBackButton()){
-            kicker.set(ControlMode.PercentOutput, 0.6);
+
+        //A Button = Kicker
+        if(Robot.controllerOne.getAButton()){
+            Shooter.kicker.set(ControlMode.PercentOutput, 0.6);
         } else {
-            kicker.set(ControlMode.PercentOutput, 0.0);
-        }
-        if(Robot.controllerTwo.getRightTriggerAxis() > 0.9){
-            kicker.set(ControlMode.Velocity, 0.6);
-        } else {
-            kicker.set(ControlMode.PercentOutput, 0.0);
+            Shooter.kicker.set(ControlMode.PercentOutput, 0);
         }
     }
 }

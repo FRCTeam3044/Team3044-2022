@@ -79,14 +79,18 @@ public class Intake extends RobotSubsystems {
     }
 
     public void testPeriodic() {
-        if (Robot.controllerTwo.getAButton()) {
-        intakeMotor.set(ControlMode.PercentOutput, 0.8);
+        //B Button = Intake spinny thing
+        if (Robot.controllerOne.getBButton()) {
+            intakeMotor.set(ControlMode.PercentOutput, 0.8);
+        } else {
+            intakeMotor.set(ControlMode.PercentOutput, 0);
         }
-        if (Robot.controllerTwo.getLeftBumper()) {
+
+        //Left Bumper = Intake comes out
+        if (Robot.controllerOne.getLeftBumper()) {
             rightSolenoid.set(Value.kForward);
             leftSolenoid.set(Value.kForward);
-        } 
-        if (Robot.controllerTwo.getRightBumper()) {
+        } else {
             rightSolenoid.set(Value.kReverse);
             leftSolenoid.set(Value.kReverse);
         }
