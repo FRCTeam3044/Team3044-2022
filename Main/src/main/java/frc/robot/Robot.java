@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
   public static Intake Intake;
   public static Hopper Hopper;
   public static Shooter Shooter;
-  public static Auto Auto;
+  //public static Auto Auto;
   
   // This method should (a) initalize the Subsystems collection and 
   // (b) call robotInit on all Subsystem modules
@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper = new Hopper();
     Robot.Shooter = new Shooter();
     Robot.Climb = new Climb();
-    Robot.Auto = new Auto();
+    //Robot.Auto = new Auto();
     Robot.Display = new Display();
   }
 
@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper.robotInit();
     Robot.Shooter.robotInit();
     Robot.Climb.robotInit();
-    Robot.Auto.robotInit();
+    //Robot.Auto.robotInit();
     Robot.Display.robotInit();
   }
 
@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper.robotPeriodic();
     Robot.Shooter.robotPeriodic();
     Robot.Climb.robotPeriodic();
-    Robot.Auto.robotPeriodic();
+    //Robot.Auto.robotPeriodic();
     Robot.Display.robotPeriodic();
   }
 
@@ -76,7 +76,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper.autonomousInit();
     Robot.Shooter.autonomousInit();
     Robot.Climb.autonomousInit();
-    Robot.Auto.autonomousInit();
+    //Robot.Auto.autonomousInit();
     Robot.Display.autonomousInit();
   }
 
@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper.autonomousPeriodic();
     Robot.Shooter.autonomousPeriodic();
     Robot.Climb.autonomousPeriodic();
-    Robot.Auto.autonomousPeriodic();
+    //Robot.Auto.autonomousPeriodic();
     Robot.Display.autonomousPeriodic();
   }
 
@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper.teleopInit();
     Robot.Shooter.teleopInit();
     Robot.Climb.teleopInit();
-    Robot.Auto.teleopInit();
+    //Robot.Auto.teleopInit();
     Robot.Display.teleopInit();
   }
 
@@ -123,7 +123,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper.testInit();
     Robot.Shooter.testInit();
     Robot.Climb.testInit();
-    Robot.Auto.testInit();
+    //Robot.Auto.testInit();
     Robot.Display.testInit();
   }
 
@@ -135,7 +135,7 @@ public class Robot extends TimedRobot {
     Robot.Hopper.testPeriodic();
     Robot.Shooter.testPeriodic();
     Robot.Climb.testPeriodic();
-    Robot.Auto.testPeriodic();
+    //Robot.Auto.testPeriodic();
     Robot.Display.testPeriodic();
   }
   

@@ -1,4 +1,4 @@
-package frc.robot;
+/*package frc.robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -35,7 +35,7 @@ public class Auto extends RobotSubsystems{
     * below with additional strings. If using the SendableChooser make sure to add them to the
     * chooser code above as well.*/
 
-    public void autonomousInit() {
+    /*public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
 
@@ -49,7 +49,7 @@ public class Auto extends RobotSubsystems{
      * SmartDashboard.*/
 
     /** TO DO find why always coming up null likely an issue on smart dashboard */
-    public void autonomousPeriodic() {
+    /*public void autonomousPeriodic() {
       if(m_autoSelected == null)  {
         Shooter.shooterRPM = 700;
         double targetVelocity_UnitsPer100ms = Shooter.shooterRPM * 4096.0 / 600.0;
@@ -121,4 +121,4 @@ public class Auto extends RobotSubsystems{
       }
     }
     public void testInit()  {}
-}
+}*/
