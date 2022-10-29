@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Timer;
 
 /** John do this one */
@@ -13,7 +15,6 @@ public class Shooter extends RobotSubsystems {
     public static TalonSRX kicker = new TalonSRX(9);
     double shooterMagicVelocityPercentValue = 0.30;
     public static double shooterRPM = 700;
-
     static Timer shooterTimer = new Timer();
     static int shooterState;
 

@@ -1,7 +1,14 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+
+import edu.wpi.first.wpilibj.Encoder;
 
 public class Drive extends RobotSubsystems
 {
@@ -11,9 +18,10 @@ public class Drive extends RobotSubsystems
   public static WPI_TalonSRX leftBack = new WPI_TalonSRX(3);
   public static WPI_TalonSRX leftFront = new WPI_TalonSRX(1);
 
-  //private DifferentialDrive m_myRobot;
-  //public static MotorControllerGroup leftMotors = new MotorControllerGroup(leftFront, leftBack);
-  //public static MotorControllerGroup rightMotors = new MotorControllerGroup(rightFront, rightBack);
+  private final DifferentialDrive m_drive = new DifferentialDrive(leftMotors, rightMotors);
+
+  public static MotorControllerGroup leftMotors = new MotorControllerGroup(leftFront, leftBack);
+  public static MotorControllerGroup rightMotors = new MotorControllerGroup(rightFront, rightBack);
 
   public void robotInit() {
     //check how wired
@@ -30,8 +38,6 @@ public class Drive extends RobotSubsystems
     leftBack.setNeutralMode(NeutralMode.Coast);
     rightFront.setNeutralMode(NeutralMode.Coast);
     rightBack.setNeutralMode(NeutralMode.Coast);
-
-    //m_myRobot = new DifferentialDrive(leftFront, rightFront);
   }
   public void robotPeriodic() {
   }
@@ -40,7 +46,8 @@ public class Drive extends RobotSubsystems
   }
 
   public void teleopPeriodic() {
-    nonlinearDrive(Robot.controllerOne.getLeftY(), Robot.controllerOne.getRightY());
+    //nonlinearDrive(Robot.controllerOne.getLeftY(), Robot.controllerOne.getRightY());
+    arcadeDrive(-Robot.controllerOne.getLeftY(), Robot.controllerOne.getRightX(), 0.10);
   }
   
   public void autonomousInit() {
@@ -79,7 +86,11 @@ public class Drive extends RobotSubsystems
     } else {rightBack.set(0.0);}*/
   }
 
-
+  public void arcadeDrive(double fwd, double rot, double deadband) {
+    if(Math.abs(fwd) < deadband){fwd = 0;}
+    if(Math.abs(rot) < deadband){rot = 0;}
+    m_drive.arcadeDrive(fwd, rot);
+  }
   /*public void linearDrive(double left, double right)  {
     leftFront.set(-left);
     rightFront.set(-right);
