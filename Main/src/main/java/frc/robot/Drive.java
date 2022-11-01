@@ -4,11 +4,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-
-import edu.wpi.first.wpilibj.Encoder;
 
 public class Drive extends RobotSubsystems
 {
@@ -24,7 +21,6 @@ public class Drive extends RobotSubsystems
   public static MotorControllerGroup rightMotors = new MotorControllerGroup(rightFront, rightBack);
 
   public void robotInit() {
-    //check how wired
     leftFront.setInverted(false);
     leftBack.setInverted(false);
     rightFront.setInverted(true);
@@ -32,7 +28,6 @@ public class Drive extends RobotSubsystems
 
     rightBack.follow(rightFront);
     leftBack.follow(leftFront);
-    //rightBack.follow(rightFront); replaced with Talon on CIM for RB
 
     leftFront.setNeutralMode(NeutralMode.Coast);
     leftBack.setNeutralMode(NeutralMode.Coast);
@@ -46,8 +41,8 @@ public class Drive extends RobotSubsystems
   }
 
   public void teleopPeriodic() {
-    //nonlinearDrive(Robot.controllerOne.getLeftY(), Robot.controllerOne.getRightY());
-    arcadeDrive(-Robot.controllerOne.getLeftY(), Robot.controllerOne.getRightX(), 0.10);
+    double left = Robot.controllerOne.getLeftY();
+    arcadeDrive(-1.0*Math.signum(left)*left*left, Robot.controllerOne.getRightX(), 0.10);
   }
   
   public void autonomousInit() {
@@ -58,17 +53,6 @@ public class Drive extends RobotSubsystems
   public void testInit() {
   }
 
-  /*public void testPeriodic() {
-    if(Robot.controllerOne.getXButton())  {
-      linearDrive(0.3, 0.3);
-    }
-     if(Robot.controllerOne.getStartButton())  {
-      linearDrive(-0.3, -0.3);
-    }
-  }*/
-
- 
-
   public void nonlinearDrive(double left, double right) {
     double deadband = 0.11;
 
@@ -78,12 +62,6 @@ public class Drive extends RobotSubsystems
     if(Math.abs(right) > deadband){
       rightFront.set(-1.0*Math.signum(right)*right*right);
     } else {rightFront.set(0.0);}
-    /*if(Math.abs(left) > deadband){
-      leftBack.set(-1.0*Math.signum(left)*left*left);
-    } else {leftBack.set(0.0);}
-    if(Math.abs(left) > deadband){
-      rightBack.set(-1.0*Math.signum(right)*right*right);
-    } else {rightBack.set(0.0);}*/
   }
 
   public void arcadeDrive(double fwd, double rot, double deadband) {

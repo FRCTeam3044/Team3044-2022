@@ -35,7 +35,7 @@ public class Display extends RobotSubsystems{
             //SmartDashboard.putNumber("current RF", Drive.rightFront.getOutputCurrent());
             //SmartDashboard.putNumber("current RB", Drive.rightBack.getOutputCurrent());
 
-            SmartDashboard.putNumber("temp LF", Drive.leftFront.getTemperature());
+            /*SmartDashboard.putNumber("temp LF", Drive.leftFront.getTemperature());
             SmartDashboard.putNumber("temp LB", 0);
             SmartDashboard.putNumber("temp RF", Drive.rightFront.getTemperature());
             SmartDashboard.putNumber("temp RB", Drive.rightBack.getTemperature());
@@ -44,9 +44,10 @@ public class Display extends RobotSubsystems{
             } else {SmartDashboard.putBoolean("LEFT TEMP. WARNING", false);}
             if((Drive.rightFront.getTemperature()+Drive.rightBack.getTemperature())/2 > 75)   {
                 SmartDashboard.putBoolean("RIGHT TEMP. WARNING", true);
-            } else {SmartDashboard.putBoolean("RIGHT TEMP. WARNING", false);}
-
+            } else {SmartDashboard.putBoolean("RIGHT TEMP. WARNING", false);}*/
             SmartDashboard.putNumber("shooter RPM", Shooter.shooter.getSelectedSensorVelocity());
+            SmartDashboard.putNumber("left RPM", Drive.leftFront.getSelectedSensorVelocity()/7.29);
+            SmartDashboard.putNumber("right RPM", Drive.rightFront.getSelectedSensorVelocity()/7.29);
         }
         loopCount++;
     }
