@@ -1,17 +1,8 @@
-/*package frc.robot;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.playingwithfusion.CANVenom.ControlMode;
-
-//import com.ctre.phoenix.motorcontrol.*;
-
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-//import edu.wpi.first.wpilibj.PneumaticsModuleType;
-//import edu.wpi.first.wpilibj.Compressor;
-//import edu.wpi.first.wpilibj.DoubleSolenoid;
-//import com.ctre.phoenix.motorcontrol.ControlMode;
 
 
 public class Auto extends RobotSubsystems{
@@ -49,18 +40,23 @@ public class Auto extends RobotSubsystems{
      * SmartDashboard.*/
 
     /** TO DO find why always coming up null likely an issue on smart dashboard */
-    /*public void autonomousPeriodic() {
+    public void autonomousPeriodic() {
       if(m_autoSelected == null)  {
         Shooter.shooterRPM = 700;
-        double targetVelocity_UnitsPer100ms = Shooter.shooterRPM * 4096.0 / 600.0;
-        Shooter.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.6);
-        Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.Velocity, targetVelocity_UnitsPer100ms);
-        if (time.get() > 3) {
-          Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
-          Shooter.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
-          Drive.rightFront.setCommand(ControlMode.PositionControl, -85.0);
-          Drive.leftFront.setCommand(ControlMode.PositionControl, -85.0);
-        }
+          double targetVelocity_UnitsPer100ms = Shooter.shooterRPM * 4096.0 / 600.0;
+          Shooter.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.6);
+          Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.4);
+          Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+          if (time.get() > 3) {
+            Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
+            Shooter.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
+            Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
+            Drive.rightFront.set(0.5);
+            Drive.leftFront.set(0.5);
+          } else if (time.get() > 6)  {
+            Drive.rightFront.set(0);
+            Drive.leftFront.set(0);
+          } 
       } else {
         switch (m_autoSelected) {
           case kCustomAuto:
@@ -73,15 +69,12 @@ public class Auto extends RobotSubsystems{
             Shooter.shooter.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
             Shooter.kicker.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
             Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
-
-            
-
-            Drive.rightFront.setCommand(ControlMode.PositionControl, -85.0);
-            Drive.leftFront.setCommand(ControlMode.PositionControl, -85.0);
+            Drive.rightFront.set(0.5);
+            Drive.leftFront.set(0.5);
           } else if (time.get() > 6)  {
-            Drive.rightFront.setCommand(ControlMode.PositionControl, -21.015);
-            Drive.leftFront.setCommand(ControlMode.PositionControl, 21.015);
-          } else if (time.get() > 8)  {
+            Drive.rightFront.set(0);
+            Drive.leftFront.set(0);
+          }/* else if (time.get() > 8)  {
             Intake.rightSolenoid.set(Value.kForward);
             Intake.leftSolenoid.set(Value.kForward);
             Intake.intakeMotor.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.8);
@@ -92,9 +85,9 @@ public class Auto extends RobotSubsystems{
           } else if (time.get() > 12) {
             Drive.rightFront.setCommand(ControlMode.PositionControl, -42.03);
             Drive.leftFront.setCommand(ControlMode.PositionControl, 42.03);
-          }
+          }*/
             break;
-          case kCustomAuto1:
+          /*case kCustomAuto1:
           Shooter.shooterRPM = 700;
           Drive.rightFront.setCommand(ControlMode.PositionControl, 40);
           Drive.leftFront.setCommand(ControlMode.PositionControl, 40);
@@ -116,9 +109,9 @@ public class Auto extends RobotSubsystems{
               Hopper.frontRoller.set(com.ctre.phoenix.motorcontrol.ControlMode.PercentOutput, 0.0);
               Drive.rightFront.setCommand(ControlMode.PositionControl, -85.0);
               Drive.leftFront.setCommand(ControlMode.PositionControl, -85.0);
-            }
+            }*/
         }
       }
     }
     public void testInit()  {}
-}*/
+}
